@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/890.e82b7afe.chunk.css","mappings":"AAIA,+BAKE,kBAAmB,CAJnB,WACF","sources":["components/Phonebook/Phonebook.module.css"],"sourcesContent":["/* .phonebookWrapper {\n  margin-top: 60px;\n} */\n\n.contactInput {\n  width: 400px;\n}\n\n.contactInput {\n  margin-bottom: 20px;\n}\n"],"names":[],"sourceRoot":""}
