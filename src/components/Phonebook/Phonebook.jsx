@@ -56,7 +56,7 @@ function Phonebook() {
   };
 
   return (
-    <div className={css.phonebookWrapper}>
+    <div>
       <h1 className={css.phonebookTitle}>Phonebook</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="nameInput" className={`form-label ${css.formLabel}`}>

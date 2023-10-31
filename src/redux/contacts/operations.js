@@ -3,7 +3,7 @@ import {
   addContactAsync,
   deleteContactAsync,
   getContactsAsync,
-} from 'redux/tools/contactsAPI';
+} from 'tools/contactsAPI';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 export const fetchContactsOp = createAsyncThunk(
