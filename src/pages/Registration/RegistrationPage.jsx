@@ -1,20 +1,14 @@
 import RegistrationForm from 'components/RegistrationForm/RegistrationForm';
 import React from 'react';
-import { signUp } from 'tools/auth';
+import { useNavigate } from 'react-router-dom';
+import { signUp } from 'tools/authAPI';
 
 const RegistrationPage = () => {
-  const registration = async body => {
-    try {
-      const response = await signUp(body);
+  const navigate = useNavigate();
 
-      // return response.data;
-      console.log('response', response);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const registration = async body => {};
 
-  return <RegistrationForm registration={registration} />;
+  return <RegistrationForm />;
 };
 
 export default RegistrationPage;

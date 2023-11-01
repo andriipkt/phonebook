@@ -1,10 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-// import Header from './Header/Header';
-// import Phonebook from './Phonebook/Phonebook';
-// import Filter from './Phonebook/Phonebook';
-// import ContactList from './ContactList/ContactList';
-
 import { lazy, useEffect } from 'react';
 import { fetchContactsOp } from 'redux/contacts/operations';
 import { selectError } from 'redux/selectors';
