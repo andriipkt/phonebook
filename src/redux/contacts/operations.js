@@ -11,6 +11,7 @@ export const fetchContactsOp = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const contacts = await getContactsAsync();
+      console.log('contacts', contacts);
       return contacts;
     } catch (error) {
       return rejectWithValue(error);

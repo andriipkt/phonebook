@@ -1,7 +1,40 @@
-import React from 'react';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { logIn } from 'redux/auth/operations';
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleChange = ({ target: { name, value } }) => {
+    switch (name) {
+      case 'email':
+        return setEmail(value);
+
+      case 'password':
+        return setPassword(value);
+
+      default:
+        return;
+    }
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault();
+
+    dispatch(logIn({ email, password }));
+
+    setEmail('');
+    setPassword('');
+    // registration({
+    //   name: name.value,
+    //   email: email.value,
+    //   password: password.value,
+    // });
+  };
+
   return (
     <div className="card p-5 m-auto" style={{ maxWidth: '600px' }}>
       <div style={{ marginBottom: '20px' }}>
@@ -11,7 +44,7 @@ const LoginForm = () => {
         </h3>
       </div>
 
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">
             Email address
@@ -21,10 +54,10 @@ const LoginForm = () => {
             className="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
+            name="email"
+            onChange={handleChange}
+            value={email}
           />
-          <div id="emailHelp" className="form-text">
-            We'll never share your email with anyone else.
-          </div>
         </div>
         <div className="mb-3">
           <label htmlFor="exampleInputPassword1" className="form-label">
@@ -35,20 +68,14 @@ const LoginForm = () => {
             className="form-control"
             id="exampleInputPassword1"
             autoComplete="off"
+            name="password"
+            onChange={handleChange}
+            value={password}
           />
         </div>
-        <div className="mb-3 form-check">
-          <input
-            type="checkbox"
-            className="form-check-input"
-            id="exampleCheck1"
-          />
-          <label className="form-check-label" htmlFor="exampleCheck1">
-            Check me out
-          </label>
-        </div>
+
         <button type="submit" className="btn btn-primary">
-          Submit
+          Log in
         </button>
       </form>
     </div>

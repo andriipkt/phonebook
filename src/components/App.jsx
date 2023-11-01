@@ -17,12 +17,12 @@ const Filter = lazy(() => import('./Phonebook/Phonebook'));
 const ContactList = lazy(() => import('./ContactList/ContactList'));
 
 export function App() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const error = useSelector(selectError);
 
-  useEffect(() => {
-    dispatch(fetchContactsOp());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchContactsOp());
+  // }, [dispatch]);
 
   return (
     <Routes>
@@ -31,8 +31,8 @@ export function App() {
         <Route path="/register" element={<RegistrationPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/phonebook" element={<Phonebook />}>
-          <Route path="" element={<Filter />} />
-          <Route path="" element={error ? <Error /> : <ContactList />} />
+          {/* <Route path="" element={<Filter />} />
+          <Route path="" element={error ? <Error /> : <ContactList />} /> */}
         </Route>
       </Route>
     </Routes>

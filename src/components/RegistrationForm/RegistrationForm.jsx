@@ -87,9 +87,15 @@ const RegistrationForm = () => {
           />
         </div>
 
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
+        {name && email && password ? (
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
+        ) : (
+          <button type="submit" className="btn btn-primary" disabled>
+            Submit
+          </button>
+        )}
       </form>
     </div>
   );
