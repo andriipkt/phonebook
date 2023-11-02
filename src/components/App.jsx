@@ -13,7 +13,7 @@ const RegistrationPage = lazy(() =>
 const LoginPage = lazy(() => import('pages/Login/LoginPage'));
 const Header = lazy(() => import('./Header/Header'));
 const Phonebook = lazy(() => import('./Phonebook/Phonebook'));
-const Filter = lazy(() => import('./Phonebook/Phonebook'));
+const Filter = lazy(() => import('./Filter/Filter'));
 const ContactList = lazy(() => import('./ContactList/ContactList'));
 
 export function App() {
