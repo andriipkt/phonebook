@@ -1,0 +1,20 @@
+.homeContainer {
+  min-height: calc(100vh - 100px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.title {
+  color: white;
+  font-weight: 700;
+  font-size: 100px;
+  text-align: center;
+}
+
+.text {
+  color: white;
+  font-weight: 500;
+  font-size: 34px;
+}

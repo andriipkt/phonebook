@@ -40,3 +40,23 @@ export const handleFulfilledDelete = (state, action) => {
     items: state.items.filter(contact => contact.id !== action.payload.id),
   };
 };
+
+export const handleFulfilledEdit = (state, action) => {
+  const updatedContact = action.payload;
+
+  const contactIndex = state.items.findIndex(
+    contact => contact.id === updatedContact.id
+  );
+
+  if (contactIndex !== -1) {
+    const updatedItems = [...state.items];
+    updatedItems[contactIndex] = updatedContact;
+
+    return {
+      ...state,
+      items: updatedItems,
+    };
+  } else {
+    return state;
+  }
+};

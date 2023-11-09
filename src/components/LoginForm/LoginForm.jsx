@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logIn } from 'redux/auth/operations';
@@ -24,15 +25,20 @@ const LoginForm = () => {
   const handleSubmit = event => {
     event.preventDefault();
 
-    dispatch(logIn({ email, password }));
+    dispatch(logIn({ email, password }))
+      .unwrap()
+      .then(() =>
+        toast.success('Welcome!', { duration: 2500, position: 'top-right' })
+      )
+      .catch(error =>
+        toast.error('Invalid email or password', {
+          duration: 2500,
+          position: 'top-right',
+        })
+      );
 
     setEmail('');
     setPassword('');
-    // registration({
-    //   name: name.value,
-    //   email: email.value,
-    //   password: password.value,
-    // });
   };
 
   return (
@@ -45,38 +51,41 @@ const LoginForm = () => {
       </div>
 
       <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="exampleInputEmail1" className="form-label">
-            Email address
-          </label>
+        <div className="form-floating mb-3">
           <input
             type="email"
             className="form-control"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
+            id="LoginInputEmail"
+            placeholder="name@example.com"
             name="email"
             onChange={handleChange}
             value={email}
           />
+          <label htmlFor="LoginInputEmail">Email address</label>
         </div>
-        <div className="mb-3">
-          <label htmlFor="exampleInputPassword1" className="form-label">
-            Password
-          </label>
+        <div className="form-floating mb-3">
           <input
             type="password"
             className="form-control"
-            id="exampleInputPassword1"
+            id="LoginInputPassword"
+            placeholder="name@example.com"
             autoComplete="off"
             name="password"
             onChange={handleChange}
             value={password}
           />
+          <label htmlFor="LoginInputPassword">Password</label>
         </div>
 
-        <button type="submit" className="btn btn-primary">
-          Log in
-        </button>
+        {email && password ? (
+          <button type="submit" className="btn btn-primary">
+            Log in
+          </button>
+        ) : (
+          <button type="submit" className="btn btn-primary" disabled>
+            Log in
+          </button>
+        )}
       </form>
     </div>
   );

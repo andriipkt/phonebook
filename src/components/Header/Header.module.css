@@ -1,0 +1,15 @@
+.navSemiWrapper {
+  display: flex;
+  gap: 30px;
+}
+
+.shadow {
+  box-shadow: 5px 12px 25px 11px rgba(46, 47, 66, 0.08),
+    0px 2px 1px 0px rgba(46, 47, 66, 0.16),
+    0px 4px 1px 0px rgba(46, 47, 66, 0.08);
+}
+
+.Main {
+  padding-top: 50px;
+  margin-bottom: 100px;
+}

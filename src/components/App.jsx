@@ -1,40 +1,62 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-import { lazy, useEffect } from 'react';
-import { fetchContactsOp } from 'redux/contacts/operations';
-import { selectError } from 'redux/selectors';
-import Error from './Error/Error';
+import { Suspense, lazy, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import Header from './Header/Header';
+import { fetchCurrentUser } from 'redux/auth/operations';
+import PrivateRoute from './UserMenu/PrivateRoute';
+import PublicRoute from './UserMenu/PublicRoute';
+import { Toaster } from 'react-hot-toast';
 
 const Home = lazy(() => import('pages/Home/Home'));
 const RegistrationPage = lazy(() =>
   import('pages/Registration/RegistrationPage')
 );
 const LoginPage = lazy(() => import('pages/Login/LoginPage'));
-const Header = lazy(() => import('./Header/Header'));
 const Phonebook = lazy(() => import('./Phonebook/Phonebook'));
-const Filter = lazy(() => import('./Filter/Filter'));
-const ContactList = lazy(() => import('./ContactList/ContactList'));
 
 export function App() {
-  // const dispatch = useDispatch();
-  const error = useSelector(selectError);
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(fetchContactsOp());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchCurrentUser());
+  }, [dispatch]);
 
   return (
-    <Routes>
-      <Route path="/" element={<Header />}>
-        <Route index element={<Home />} />
-        <Route path="/register" element={<RegistrationPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/phonebook" element={<Phonebook />}>
-          {/* <Route path="" element={<Filter />} />
-          <Route path="" element={error ? <Error /> : <ContactList />} /> */}
-        </Route>
-      </Route>
-    </Routes>
+    <>
+      <Toaster />
+
+      <Suspense fallback={null}>
+        <Routes>
+          <Route path="/" element={<Header />}>
+            <Route index element={<Home />} />
+            <Route
+              path="/register"
+              element={
+                <PublicRoute>
+                  <RegistrationPage />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <PublicRoute>
+                  <LoginPage />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/phonebook"
+              element={
+                <PrivateRoute>
+                  <Phonebook />
+                </PrivateRoute>
+              }
+            />
+          </Route>
+        </Routes>
+      </Suspense>
+    </>
   );
 }

@@ -1,16 +1,13 @@
-import { lazy, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import css from './Phonebook.module.css';
 import { nanoid } from '@reduxjs/toolkit';
 import { addContactOp, fetchContactsOp } from 'redux/contacts/operations';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts, selectError } from 'redux/selectors';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-// import Filter from 'components/Filter/Filter';
-// import ContactList from 'components/ContactList/ContactList';
+import Filter from 'components/Filter/Filter';
+import ContactList from 'components/ContactList/ContactList';
 import Error from 'components/Error/Error';
-
-const Filter = lazy(() => import('../Filter/Filter'));
-const ContactList = lazy(() => import('../ContactList/ContactList'));
 
 function Phonebook() {
   const [name, setName] = useState('');
@@ -108,6 +105,7 @@ function Phonebook() {
           </button>
         </form>
       </div>
+
       <Filter />
       {error ? <Error /> : <ContactList />}
     </>
