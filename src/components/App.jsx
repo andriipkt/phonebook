@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Suspense, lazy, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
@@ -7,6 +7,7 @@ import { fetchCurrentUser } from 'redux/auth/operations';
 import PrivateRoute from './UserMenu/PrivateRoute';
 import PublicRoute from './UserMenu/PublicRoute';
 import { Toaster } from 'react-hot-toast';
+import { selectLoadingAuth } from 'redux/selectors';
 
 const Home = lazy(() => import('pages/Home/Home'));
 const RegistrationPage = lazy(() =>
@@ -17,6 +18,8 @@ const Phonebook = lazy(() => import('./Phonebook/Phonebook'));
 
 export function App() {
   const dispatch = useDispatch();
+  const isloading = useSelector(selectLoadingAuth);
+  console.log('auth', isloading);
 
   useEffect(() => {
     dispatch(fetchCurrentUser());

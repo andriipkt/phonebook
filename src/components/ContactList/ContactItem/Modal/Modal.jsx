@@ -78,7 +78,6 @@ const Modal = ({ toggle, contactId }) => {
       style={{
         display: 'block',
         backdropFilter: 'blur(5px)',
-        overflow: 'hidden',
       }}
       onClick={handleBackdropClick}
     >

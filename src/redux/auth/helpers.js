@@ -10,6 +10,7 @@ export const handleRejected = (state, action) => {
     ...state,
     error: action.payload,
     isLoading: false,
+    isRefreshing: false,
   };
 };
 
@@ -17,6 +18,7 @@ export const handleFulfilled = (state, action) => {
   return {
     ...state,
     isLoading: false,
+    isRefreshing: false,
   };
 };
 

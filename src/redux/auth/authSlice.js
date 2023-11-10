@@ -1,6 +1,6 @@
-import { handleFulfilled } from 'redux/contacts/helpers';
 import { fetchCurrentUser, logIn, logOut, register } from './operations';
 import {
+  handleFulfilled,
   handleFulfilledFetchCurrentUser,
   handleFulfilledLogIn,
   handleFulfilledLogOut,
@@ -16,6 +16,7 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isLoading: false,
+  isRefreshing: true,
   error: null,
 };
 
