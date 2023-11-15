@@ -1,7 +1,8 @@
+import Refresh from 'components/Refresh/Refresh';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from 'redux/auth/operations';
-import { selectUsername } from 'redux/selectors';
+import { selectLoadingAuth, selectUsername } from 'redux/selectors';
 
 const styles = {
   wrapper: {
@@ -21,6 +22,7 @@ const styles = {
 const UserMenu = () => {
   const username = useSelector(selectUsername);
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectLoadingAuth);
 
   return (
     <div style={styles.wrapper}>
@@ -33,6 +35,7 @@ const UserMenu = () => {
       >
         Logout
       </button>
+      {isLoading && <Refresh />}
     </div>
   );
 };

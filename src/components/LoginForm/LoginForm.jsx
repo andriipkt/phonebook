@@ -1,13 +1,16 @@
+import Refresh from 'components/Refresh/Refresh';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logIn } from 'redux/auth/operations';
+import { selectLoadingAuth } from 'redux/selectors';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const isLoading = useSelector(selectLoadingAuth);
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -87,6 +90,8 @@ const LoginForm = () => {
           </button>
         )}
       </form>
+
+      {isLoading && <Refresh />}
     </div>
   );
 };
